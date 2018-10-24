@@ -1,0 +1,16 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class Campoexperiencia extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        (new \App\Campoexperiencia(["descricao" => "O eu, o outro e o nós"]))->save();
+    }
+}

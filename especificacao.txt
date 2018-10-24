@@ -1,0 +1,16 @@
+NOME DO SOFTWARE (OU SOFTWARE):
+
+AUTOR/A(ES/AS):
+
+FONTE:
+
+CONTATO:
+
+NÍVEL(IS) DE ENSINO: => Educação infantil, Ensino Fundamental ou ambos.
+- Quando selecionado Educação infantil, abrem os CAMPOS DE EXPERIÊNCIAS.
+- Quando selecionado Ensino fundamental, abrem as ÁREAS DO CONHECIMENTO, 
+depois o COMPONENTE CURRICULAR, e por fim, a UNIDADE TEMÁTICA.
+
+ANEXO: => Plano de aula integral da professora.
+
+
