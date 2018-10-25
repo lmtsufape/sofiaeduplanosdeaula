@@ -80,7 +80,7 @@
 							<div class="form-group">
     							<label class="control-label col-sm-3" for="objetivos">Arquivo:</label>
     							<div class="col-sm-9">
-									<p class="form-control-static"><a href="/download/{{$plano->arquivo}}" target="_new">Download</a></p>       							
+									<p class="form-control-static"><a href="{{ route('/download/planos', ['file' => $plano->arquivo])}}" target="_new">Download</a></p>       							
     							</div>
 							</div>
 													
