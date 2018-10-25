@@ -11,23 +11,24 @@
 |
 */
 
-Route::get('/', 'PlanoController@main');
+Route::get('/', 'PlanoController@main')->name('inicio');
+Route::get('/inicio', 'PlanoController@main');
 
-Route::get('/plano/show/{id}', 'PlanoController@exibir');
-Route::get('/plano/new', 'PlanoController@create');
+Route::get('/plano/show/{id}', 'PlanoController@exibir')->name('/plano/show');
+Route::get('/plano/new', 'PlanoController@create')->name('/plano/new');
 Route::get('/plano/all', 'PlanoController@listar');
-Route::post('/plano/new', 'PlanoController@store');
+Route::post('/plano/new', 'PlanoController@store')->name('/plano/new');;
 
-Route::get('/plano/campo/{id}', 'PlanoController@listarCampo');
+Route::get('/plano/campo/{id}', 'PlanoController@listarCampo')->name('/plano/campo');
 
-Route::get('/plano/unidade/{id}', 'PlanoController@listarUnidade');
+Route::get('/plano/unidade/{id}', 'PlanoController@listarUnidade')->name('/plano/unidade');
 
-Route::post('/plano/busca/{termo}', 'PlanoController@busca');
+Route::post('/plano/busca', 'PlanoController@busca')->name('/plano/busca');
 
 
 Route::get('/download/planos/{file}', function ($file='') {
     return response()->download(storage_path('app/public/planos/'.$file)); 
-});
+})->name('/download/planos');
 
 Auth::routes();
 

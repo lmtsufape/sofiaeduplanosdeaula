@@ -150,14 +150,14 @@ hr.separador {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Planos de Aula</a>
+            <a class="navbar-brand" href="{{ route('inicio') }}">Planos de Aula</a>
         </div>
         <div class="collapse navbar-collapse">        
             <ul class="nav navbar-nav navbar-right">
                         @if (Auth::guest())
-                        	<li><form action="/plano/busca" method="post" >
+                        	<li><form action="{{ route('/plano/busca') }}" method="post" >
                         	  {{ csrf_field() }}
-                        	<input type="text" class="form-control" style="margin-top: 7px;" placeholder="Busca por software"> </form></li>
+                        	<input type="text" name="termo" class="form-control" style="margin-top: 7px;" placeholder="Busca por software"> </form></li>
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
@@ -176,13 +176,13 @@ hr.separador {
                         @endif
             </ul>
             <ul class="nav navbar-nav">
-                <li ><a href="/plano/new">Novo</a></li>
+                <li ><a href="{{ route('/plano/new') }}">Novo</a></li>
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Educação Infantil<b class="caret"></b></a>
                     <ul class="dropdown-menu multi-level">
                     @foreach ($camposMenu as $campo)
                     @if($campo->planos_count > 0)
-                    	<li><a href="/plano/campo/{{$campo->id}}">{{$campo->descricao}} ({{$campo->planos_count}})</a></li>
+                    	<li><a href="{{ route('/plano/campo', ['id' => $campo->id]) }}">{{$campo->descricao}} ({{$campo->planos_count}})</a></li>
                     @else
                     <li><a href="#">{{$campo->descricao}} ({{$campo->planos_count}})</a></li>
                     @endif
@@ -205,7 +205,7 @@ hr.separador {
                                 	<ul class="dropdown-menu">
                                 		@foreach($unidadesMenu as $unidade)
                                 			@if($unidade->componentecurricular_id == $componente->id)
-													         <li><a href="/plano/unidade/{{$unidade->id}}">{{$unidade->descricao}} ({{$unidade->planos_count}})</a></li>                                		
+													         <li><a href="{{route ('/plano/unidade', ['id' => $unidade->id])}}">{{$unidade->descricao}} ({{$unidade->planos_count}})</a></li>                                		
                                 			@endif
                                 		@endforeach
                                 	</ul>
@@ -246,13 +246,13 @@ hr.separador {
                         @endif
             </ul>
             <ul class="nav navbar-nav">
-                <li ><a href="/plano/new">Novo</a></li>
+                <li ><a href="{{ route ('/plano/new') }}">Novo</a></li>
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Educação Infantil<b class="caret"></b></a>
                     <ul class="dropdown-menu multi-level">
                     @foreach ($camposMenu as $campo)
                     @if($campo->planos_count > 0)
-                    	<li><a href="/plano/campo/{{$campo->id}}">{{$campo->descricao}} ({{$campo->planos_count}})</a></li>
+                    	<li><a href="{{ route('/plano/campo/', ['id' => $campo->id])}}">{{$campo->descricao}} ({{$campo->planos_count}})</a></li>
                     @else
                     <li><a href="#">{{$campo->descricao}} ({{$campo->planos_count}})</a></li>
                     @endif

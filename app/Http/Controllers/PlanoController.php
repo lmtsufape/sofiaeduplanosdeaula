@@ -31,15 +31,19 @@ class PlanoController extends Controller
     public function store(Request $request) {
     	
      	if($request->hasFile('file') && $request->file('file')->isValid()) {
-    		$upload = $request->file('file')->store('planos');
+    		//$upload = $request->file('file')->store('planos');
     		
     		$dados = $request->all();
-    		$dados['arquivo'] = $upload;
+    	//	$dados['arquivo'] = $upload;
     		
-    		echo $upload;
-    		
+    		$name = uniqid(date('HisYmd'));
+    		$extension = $request->file->extension();
+         $nameFile = "{$name}.{$extension}";    		
+    		$upload = $request->file->storeAs('planos', $nameFile);
+ 
+   		
  			$plano = new \App\Plano($request->all());
- 			$plano->arquivo = $upload;
+ 			$plano->arquivo = $nameFile;
  			
  			if(isset($request->campoexperiencia_id) && $request->campoexperiencia_id != 0)
  				$plano ->campoexperiencia_id = $request->campoexperiencia_id;
@@ -55,10 +59,7 @@ class PlanoController extends Controller
  			
  			$plano->save();
  			
- 			return "foi";
-			//Arquivo    	
-		//dd($request->all());
-		return "foi";   		
+ 			return redirect()->route('/plano/new');
     	} else {
 				return "arquivo invalido";
 		}

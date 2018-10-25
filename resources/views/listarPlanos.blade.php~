@@ -22,8 +22,8 @@
                 					<strong>{{ $plano->componentecurricular->descricao}} - {{ $plano->areatematica->descricao}}</strong></p>
                 				@endif
                 				<p class="autores">Por: <strong>{{ $plano->autores }}</strong></p>
-                				<a href="/plano/show/{{$plano->id}}">Ver mais detalhes</a> ::
-                				<a href="/download/{{$plano->arquivo}}">Download</a>
+                				<a href="{{ route('/plano/show', ['id' => $plano->id])}}">Ver mais detalhes</a> ::
+                				<a href="{{ route('/download', ['file' => $plano->arquivo])}}" target="_new">Download</a>
                 			</div>
                 			@endforeach
                 	</div>
