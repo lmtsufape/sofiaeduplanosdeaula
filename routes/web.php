@@ -23,11 +23,11 @@ Route::get('/plano/campo/{id}', 'PlanoController@listarCampo')->name('/plano/cam
 
 Route::get('/plano/unidade/{id}', 'PlanoController@listarUnidade')->name('/plano/unidade');
 
-Route::post('/plano/busca', 'PlanoController@busca')->name('/plano/busca');
+Route::any('/plano/busca', 'PlanoController@busca')->name('/plano/busca');
 
 
 Route::get('/download/planos/{file}', function ($file='') {
-    return response()->download(storage_path('app/public/planos/'.$file)); 
+    return response()->download(storage_path('app/public/planos/'.$file));
 })->name('/download/planos');
 
 Auth::routes();
