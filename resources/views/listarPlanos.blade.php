@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div id="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Listar Planos de Aula</div>
-			
-              
                 <div class="panel-body container-fluid bg-3 text-center">
                 	<div class="row">
                 			@foreach($planos as $plano)
@@ -27,8 +26,9 @@
                 			</div>
                 			@endforeach
                 	</div>
-                </div>	
-                
+                  {{ $planos->links() }}
+                </div>
+
             </div>
         </div>
     </div>

@@ -8,23 +8,22 @@ class Plano extends Model
 {
     protected $fillable = [
     	'software', 'autores', 'contato', 'fonte',
-    	'nivel', 'arquivo' 
+    	'nivel', 'arquivo', 'verificado'
     ];
-    
+
     public function componentecurricular() {
-		return $this->belongsTo(\App\Componentecurricular::class);    
+		return $this->belongsTo(\App\Componentecurricular::class);
     }
 
     public function campoexperiencia() {
-		return $this->belongsTo(\App\Campoexperiencia::class);    
-    }    
-    
+		return $this->belongsTo(\App\Campoexperiencia::class);
+    }
+
     public function areatematica() {
-		return $this->belongsTo(\App\Areatematica::class);    
+		return $this->belongsTo(\App\Areatematica::class);
     }
 
     public function areaconhecimento() {
-		return $this->belongsTo(\App\Areaconhecimento::class);    
+		return $this->belongsTo(\App\Areaconhecimento::class);
     }
 }
-
