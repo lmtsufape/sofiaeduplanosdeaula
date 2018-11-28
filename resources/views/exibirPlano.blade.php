@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-  
+
 <div id="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Plano de Aula: </div>
-					
+
                 <div class="panel-body">
 <form class="form-horizontal">
 
@@ -29,14 +29,14 @@
     							<div class="col-sm-9">
       							<p class="form-control-static">{{ $plano->contato }}</p>
     							</div>
-							</div>							
+							</div>
 							<div class="form-group">
     							<label class="control-label col-sm-3" for="fonte">Fonte:</label>
     							<div class="col-sm-9">
-      							<p class="form-control-static">@isset($plano->fonte)<a href="{{ $plano->fonte }}" target="_new">{{ $plano->fonte }}</a>@endisset</p> 
+      							<p class="form-control-static">@isset($plano->fonte)<a href="{{ $plano->fonte }}" target="_new">{{ $plano->fonte }}</a>@endisset</p>
     							</div>
-							</div>	
-							
+							</div>
+
 
 							@if($plano->nivel == 1)
 							<div class="form-group">
@@ -48,7 +48,7 @@
 							<div class="form-group">
     							<label class="control-label col-sm-3" for="serie">Campo de Experiência:</label>
     							<div class="col-sm-9">
-   								<p class="form-control-static">{{ $plano->campoexperiencia->descricao }}</p> 
+   								<p class="form-control-static">{{ $plano->campoexperiencia->descricao }}</p>
     							</div>
 							</div>
 							@else
@@ -57,7 +57,7 @@
     							<div class="col-sm-9">
 									<p class="form-control-static">Ensino Fundamental</p>
     							</div>
-							</div>								
+							</div>
 							<div class="form-group">
     							<label class="control-label col-sm-3" for="conteudos">Área do Conhecimento:</label>
     							<div class="col-sm-9">
@@ -67,25 +67,45 @@
 							<div class="form-group">
     							<label class="control-label col-sm-3" for="tema">Componente Curricular:</label>
     							<div class="col-sm-9">
-    								<p class="form-control-static">{{ $plano->componentecurricular->descricao }}</p> 
+    								<p class="form-control-static">{{ $plano->componentecurricular->descricao }}</p>
     							</div>
 							</div>
 							<div class="form-group">
     							<label class="control-label col-sm-3" for="objetivos">Unidade Temática:</label>
     							<div class="col-sm-9">
-									<p class="form-control-static">{{ $plano->areatematica->descricao }}</p>       							
+									<p class="form-control-static">{{ $plano->areatematica->descricao }}</p>
     							</div>
 							</div>
 							@endif
 							<div class="form-group">
     							<label class="control-label col-sm-3" for="objetivos">Arquivo:</label>
     							<div class="col-sm-9">
-									<p class="form-control-static"><a href="{{ route('/download/planos', ['file' => $plano->arquivo])}}" target="_new">Download</a></p>       							
+									<p class="form-control-static"><a href="{{ route('/download/planos', ['file' => $plano->arquivo])}}" target="_new">Download</a></p>
     							</div>
 							</div>
-													
-	</form>						
-							
+
+              <div class="form-group">
+                @if (Auth::guard()->check())<!-- editar -->
+                <div class="control-label col-sm-3">
+                    <a class="right waves-effect waves-teal darken-4 btn-flat" href="/plano/editarPlano/{{$plano->id}}">
+                        <b>Editar</b> <i class="material-icons right">edit</i>
+                      </a>
+                    </div>
+                @endif
+              </div>
+
+              <div class="form-group">
+                @if (Auth::guard()->check())<!-- editar -->
+                <div class="control-label col-sm-3">
+                    <a class="right waves-effect waves-teal darken-4 btn-flat" href="/plano/remover/{{$plano->id}}">
+                        <b>Deletar</b> <i class="material-icons right">delete</i>
+                      </a>
+                    </div>
+                @endif
+              </div>
+
+	</form>
+
 					 </div>
             </div>
         </div>

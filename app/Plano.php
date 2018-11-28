@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Plano extends Model
 {
     protected $fillable = [
-    	'software', 'autores', 'contato', 'fonte',
+      'software', 'autores', 'contato', 'fonte',
     	'nivel', 'arquivo', 'verificado'
     ];
 
+    public function user() {
+    return $this->belongsTo(\App\User::class);
+    }
     public function componentecurricular() {
 		return $this->belongsTo(\App\Componentecurricular::class);
     }

@@ -11,8 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles-->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
-    
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 <style type="text/css">
 #grupo_infantil {
 	display: none;
@@ -83,10 +83,10 @@ hr.separador {
 	margin-top: 0px;
 	margin-bottom: 0px;
 }
-</style> 
+</style>
 
 <style>
- 
+
 .dropdown-submenu {
     position: relative;
 }
@@ -134,7 +134,29 @@ hr.separador {
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
 }
-  
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v18/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -moz-font-feature-settings: 'liga';
+    -moz-osx-font-smoothing: grayscale;
+}
+
 </style>
 
 </head>
@@ -152,7 +174,7 @@ hr.separador {
             </button>
             <a class="navbar-brand" href="{{ route('inicio') }}">Planos de Aula</a>
         </div>
-        <div class="collapse navbar-collapse">        
+        <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                         @if (Auth::guest())
                         	<li><form action="{{ route('/plano/busca') }}" method="post" >
@@ -177,6 +199,9 @@ hr.separador {
             </ul>
             <ul class="nav navbar-nav">
                 <li ><a href="{{ route('/plano/new') }}">Novo</a></li>
+                @if (Auth::guard()->check())
+                 <li ><a href="{{ route('/plano/listaUser') }}">Gerenciar Planos</a></li>
+                @endif
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Educação Infantil<b class="caret"></b></a>
                     <ul class="dropdown-menu multi-level">
@@ -187,25 +212,25 @@ hr.separador {
                     <li><a href="#">{{$campo->descricao}} ({{$campo->planos_count}})</a></li>
                     @endif
                     @endforeach
-                        
+
                     </ul>
                 </li>
                  <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ensino Fundamental<b class="caret"></b></a>
                     <ul class="dropdown-menu multi-level">
                     @foreach ($areasMenu as $area)
-							<li  class="dropdown-submenu">                    
+							<li  class="dropdown-submenu">
 						  		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
                        {{$area->descricao}} ({{$area->planos_count}})</a>
                        <ul class="dropdown-menu">
 									@foreach($componentesMenu as $componente)
-										@if($componente->areaconhecimento_id == $area->id) 
+										@if($componente->areaconhecimento_id == $area->id)
                                 <li class="dropdown-submenu">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{$componente->descricao}} ({{$componente->planos_count}})</a>
                                 	<ul class="dropdown-menu">
                                 		@foreach($unidadesMenu as $unidade)
                                 			@if($unidade->componentecurricular_id == $componente->id)
-													         <li><a href="{{route ('/plano/unidade', ['id' => $unidade->id])}}">{{$unidade->descricao}} ({{$unidade->planos_count}})</a></li>                                		
+													         <li><a href="{{route ('/plano/unidade', ['id' => $unidade->id])}}">{{$unidade->descricao}} ({{$unidade->planos_count}})</a></li>
                                 			@endif
                                 		@endforeach
                                 	</ul>
@@ -215,11 +240,12 @@ hr.separador {
                        </ul>
 
                        </li>
+
                     @endforeach
-                        
+
                     </ul>
                 </li>
-                
+
             </ul>
         </div>
     </div>
@@ -257,25 +283,25 @@ hr.separador {
                     <li><a href="#">{{$campo->descricao}} ({{$campo->planos_count}})</a></li>
                     @endif
                     @endforeach
-                        
+
                     </ul>
                 </li>
                  <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ensino Fundamental<b class="caret"></b></a>
                     <ul class="dropdown-menu multi-level">
                     @foreach ($areasMenu as $area)
-							<li  class="dropdown-submenu">                    
+							<li  class="dropdown-submenu">
 						  		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
                        {{$area->descricao}} ({{$area->planos_count}})</a>
                        <ul class="dropdown-menu">
 									@foreach($componentesMenu as $componente)
-										@if($componente->areaconhecimento_id == $area->id) 
+										@if($componente->areaconhecimento_id == $area->id)
                                 <li class="dropdown-submenu">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{$componente->descricao}} ({{$componente->planos_count}})</a>
                                 	<ul class="dropdown-menu">
                                 		@foreach($unidadesMenu as $unidade)
                                 			@if($unidade->componentecurricular_id == $componente->id)
-													         <li><a href="#">{{$unidade->descricao}} ({{$unidade->planos_count}})</a></li>                                		
+													         <li><a href="#">{{$unidade->descricao}} ({{$unidade->planos_count}})</a></li>
                                 			@endif
                                 		@endforeach
                                 	</ul>
@@ -286,10 +312,10 @@ hr.separador {
 
                        </li>
                     @endforeach
-                        
+
                     </ul>
                 </li>
-                
+
             </ul>
         </div>
 
@@ -297,7 +323,7 @@ hr.separador {
 
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
-</footer> 
+</footer>
 </div>
 </body>
 </html>
