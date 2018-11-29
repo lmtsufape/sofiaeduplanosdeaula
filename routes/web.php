@@ -22,8 +22,16 @@ Route::post('/plano/new', 'PlanoController@store');
 Route::get('/plano/campo/{id}', 'PlanoController@listarCampo')->name('/plano/campo');
 
 Route::get('/plano/unidade/{id}', 'PlanoController@listarUnidade')->name('/plano/unidade');
-
 Route::any('/plano/busca', 'PlanoController@busca')->name('/plano/busca');
+
+Route::get('/plano/unidade/{id}', 'PlanoController@listarUnidade')->name('/plano/unidade');
+
+Route::get('/plano/editarPlano/{id}', 'PlanoController@edit')->name('/plano/editarPlano');
+Route::post('/plano/salvarPlano', 'PlanoController@editarPlano')->name('/plano/salvarPlano');
+
+Route::get('/plano/remover/{id}', 'PlanoController@removerPlano')->name('/plano/remover');
+
+Route::get('/plano/listaUser', 'PlanoController@listarUser')->name('/plano/listaUser');
 
 
 Route::get('/download/planos/{file}', function ($file='') {
