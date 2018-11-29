@@ -19,16 +19,12 @@ class CreatePlanosTable extends Migration
             $table->string('autores')->nullable();
             $table->string('contato')->nullable();
             $table->string('fonte')->nullable();
-            $table->boolean('verificado');
             $table->integer('nivel');
             $table->integer('campoexperiencia_id')->unsigned()->nullable();
             $table->integer('areatematica_id')->unsigned()->nullable();
             $table->integer('componentecurricular_id')->unsigned()->nullable();
             $table->integer('areaconhecimento_id')->unsigned()->nullable();
-            $table->integer('user_id')->unsigned()->nullable();
             $table->string('arquivo')->nullable();
-
-
 
             $table->timestamps();
         });
