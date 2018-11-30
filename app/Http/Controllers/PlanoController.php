@@ -102,28 +102,28 @@ class PlanoController extends Controller
     }
 
     public function listar(Request $request) {
-		$planos = \App\Plano::paginate(10);
+		$planos = \App\Plano::paginate(9);
 		return view("listarPlanos", ["planos" => $planos]);
     }
 
     public function listarCampo(Request $request){
 		$planos = \App\Plano::where([['nivel', '=', 1], ['campoexperiencia_id', '=', $request->id]])
 													->where('verificado', '=', true)
-													->paginate(10);
+													->paginate(9);
 		return view("listarPlanos", ["planos" => $planos]);
     }
 
     public function listarUnidade(Request $request){
 		$planos = \App\Plano::where([['nivel', '=', 2], ['areatematica_id', '=', $request->id]])
 													->where('verificado', '=', true)
-													->paginate(10);
+													->paginate(9);
 		return view("listarPlanos", ["planos" => $planos]);
     }
 
     public function busca(Request $request){
 		$planos = \App\Plano::where('software', 'ilike', '%' . $request->termo . '%')
 													->where('verificado', '=', true)
-													->paginate(10);
+													->paginate(9);
 		return view("listarPlanos", ["planos" => $planos]);
     }
 
@@ -184,13 +184,13 @@ class PlanoController extends Controller
 
 		public function listarUser(){
 				$usuarioId = Auth::user()->id;
-				$planos = \App\Plano::where('user_id', '=', $usuarioId)->paginate(10);
+				$planos = \App\Plano::where('user_id', '=', $usuarioId)->paginate(9);
 
 				return view("listarPlanos", ["planos" => $planos]);
 		}
 
 		public function listarNaoVerificados(){
-				$planos = \App\Plano::where('verificado', '=', false)->paginate(10);
+				$planos = \App\Plano::where('verificado', '=', false)->paginate(9);
 
 				return view("listarPlanos", ["planos" => $planos]);
 		}
