@@ -102,7 +102,7 @@ class PlanoController extends Controller
     }
 
     public function listar(Request $request) {
-		$planos = \App\Plano::all();
+		$planos = \App\Plano::paginate(10);
 		return view("listarPlanos", ["planos" => $planos]);
     }
 
@@ -172,7 +172,7 @@ class PlanoController extends Controller
 			$plano->verificado = false;
  			$plano->save();
 
- 			return redirect()->route('/plano/new');
+ 			return view("exibirPlano", ["plano" => $plano]);
 
 		}
 
@@ -187,6 +187,20 @@ class PlanoController extends Controller
 				$planos = \App\Plano::where('user_id', '=', $usuarioId)->paginate(10);
 
 				return view("listarPlanos", ["planos" => $planos]);
+		}
+
+		public function listarNaoVerificados(){
+				$planos = \App\Plano::where('verificado', '=', false)->paginate(10);
+
+				return view("listarPlanos", ["planos" => $planos]);
+		}
+
+		public function verificarPlano(Request $request){
+				$plano = \App\Plano::find($request->id);
+				$plano->verificado = true;
+				$plano->save();
+
+				return redirect()->route('/plano/new');
 		}
 
 }

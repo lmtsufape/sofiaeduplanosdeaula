@@ -181,9 +181,12 @@ hr.separador {
                         	  {{ csrf_field() }}
                         	<input type="text" name="termo" class="form-control" style="margin-top: 7px;" placeholder="Busca por software"> </form></li>
                             <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <!--<li><a href="{{ route('register') }}">Register</a></li>-->
                         @else
-                        	<li>{{ Auth::user()->name }}</li>
+                        <li><form action="{{ route('/plano/busca') }}" method="post" >
+                          {{ csrf_field() }}
+                        <input type="text" name="termo" class="form-control" style="margin-top: 5px;" placeholder="Busca por software"> </form></li>
+                        	<!--<li>{{ Auth::user()->name }}</li>-->
                            <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -195,12 +198,20 @@ hr.separador {
                                             {{ csrf_field() }}
                                         </form>
                            </li>
+                           <li><a href="{{ route('register') }}">Register</a></li>
                         @endif
             </ul>
             <ul class="nav navbar-nav">
                 <li ><a href="{{ route('/plano/new') }}">Novo</a></li>
                 @if (Auth::guard()->check())
-                 <li ><a href="{{ route('/plano/listaUser') }}">Gerenciar Planos</a></li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gerenciar Planos<b class="caret"></b></a>
+                    <ul class="dropdown-menu multi-level">
+                      <li><a href="{{ route('/plano/listaUser') }}">Meus Planos</a></li>
+                      <li><a href="{{ route('/plano/listaNaoVerificados') }}">Não verificados</a></li>
+                      <li><a href="{{ route('/plano/all') }}">Todos</a></li>
+                    </ul>
+                </li>
                 @endif
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Educação Infantil<b class="caret"></b></a>
@@ -255,7 +266,7 @@ hr.separador {
             <ul class="nav navbar-nav navbar-right">
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <!--<li><a href="{{ route('register') }}">Register</a></li>-->
                         @else
                         	<li>{{ Auth::user()->name }}</li>
                            <li>
