@@ -95,10 +95,20 @@
               </div>
 
               <div class="form-group">
-                @if (Auth::guard()->check())<!-- editar -->
+                @if (Auth::guard()->check())<!-- deletar -->
                 <div class="control-label col-sm-3">
                     <a class="right waves-effect waves-teal darken-4 btn-flat" href="/plano/remover/{{$plano->id}}">
                         <b>Deletar</b> <i class="material-icons right">delete</i>
+                      </a>
+                    </div>
+                @endif
+              </div>
+
+              <div class="form-group">
+                @if (Auth::guard()->check() && $plano->verificado == false)<!-- verificar -->
+                <div class="control-label col-sm-3">
+                    <a class="right waves-effect waves-teal darken-4 btn-flat" href="/plano/verificar/{{$plano->id}}">
+                        <b>Verificar</b> <i class="material-icons right">check</i>
                       </a>
                     </div>
                 @endif

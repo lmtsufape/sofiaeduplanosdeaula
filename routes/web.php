@@ -16,7 +16,7 @@ Route::get('/inicio', 'PlanoController@main');
 
 Route::get('/plano/show/{id}', 'PlanoController@exibir')->name('/plano/show');
 Route::get('/plano/new', 'PlanoController@create')->name('/plano/new');
-Route::get('/plano/all', 'PlanoController@listar');
+Route::get('/plano/all', 'PlanoController@listar')->name('/plano/all');
 Route::post('/plano/new', 'PlanoController@store');
 
 Route::get('/plano/campo/{id}', 'PlanoController@listarCampo')->name('/plano/campo');
@@ -31,7 +31,11 @@ Route::post('/plano/salvarPlano', 'PlanoController@editarPlano')->name('/plano/s
 
 Route::get('/plano/remover/{id}', 'PlanoController@removerPlano')->name('/plano/remover');
 
+Route::get('/plano/verificar/{id}', 'PlanoController@verificarPlano')->name('/plano/verificar');
+
 Route::get('/plano/listaUser', 'PlanoController@listarUser')->name('/plano/listaUser');
+
+Route::get('/plano/listaNaoVerificados', 'PlanoController@listarNaoVerificados')->name('/plano/listaNaoVerificados');
 
 
 Route::get('/download/planos/{file}', function ($file='') {
