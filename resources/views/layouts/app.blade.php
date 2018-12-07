@@ -162,6 +162,7 @@ hr.separador {
 
 </head>
 <body>
+  <!-- barra brasil-->
   <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
   <ul id="menu-barra-temp" style="list-style:none;">
     <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
@@ -173,6 +174,21 @@ hr.separador {
   </ul>
 </div>
 
+<!-- barra de logos-->
+<div id="barra-logos" style="background:#FFFFFF; margin-top: 1px; height: 100px; padding: 10px 0 100px 0">
+  <ul id="logos" style="list-style:none;">
+    <li style="margin-right:170px; margin-left:110px; border-right:1px">
+      <a href="{{ route('inicio') }}"><img src="{{asset('images/sofiaedu.png')}}"  height="90" width="250"></a>
+      <a href="{{ route('inicio') }}"><img src="{{asset('images/lmts2.png')}}" style = "margin-left: 15px" height="90" width="80"align = "right" ></a>
+      <a href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 15px" height="90" width="80" align = "right" ></a>
+      <a href="http://www.ufrpe.br/"><img src="{{asset('images/ufrpe.png')}}" style = "margin-left: 15px; margin-right: -15px " height="90" width="80" align = "right"></a>
+    </li>
+
+
+  </ul>
+</div>
+
+<!-- barra de menu -->
 <div id="app">
 <div class="navbar navbar-default" role="navigation">
     <div class="container col-md-10 col-md-offset-1">
@@ -214,10 +230,10 @@ hr.separador {
             </ul>
             <ul class="nav navbar-nav">
                 <li> <a href="{{ route('inicio') }}">Download</a></li>
-                <li ><a href="{{ route('/plano/new') }}">Novo</a></li>
+                <li ><a href="{{ route('/plano/new') }}">Enviar plano</a></li>
                 @if (Auth::guard()->check())
                 <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gerenciar Planos<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gerenciar<b class="caret"></b></a>
                     <ul class="dropdown-menu multi-level">
                       <li><a href="{{ route('/plano/listaUser') }}">Meus Planos</a></li>
                       <li><a href="{{ route('/plano/listaNaoVerificados') }}">Não verificados</a></li>
@@ -296,7 +312,7 @@ hr.separador {
             </ul>
             <ul class="nav navbar-nav">
                 <li> <a href="{{ route('inicio') }}">Download</a></li>
-                <li ><a href="{{ route ('/plano/new') }}">Novo</a></li>
+                <li ><a href="{{ route ('/plano/new') }}">Enviar plano</a></li>
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Educação Infantil<b class="caret"></b></a>
                     <ul class="dropdown-menu multi-level">
