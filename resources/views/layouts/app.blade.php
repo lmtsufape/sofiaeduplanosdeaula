@@ -30,7 +30,7 @@ body{
    background-size:cover;
    background-repeat:no-repeat;
    color: #0b3c54;
-   background-image:url("{{asset('images/background.jpg')}}");
+   background-image:url("{{asset('images/background3.png')}}");
 
 }
 
