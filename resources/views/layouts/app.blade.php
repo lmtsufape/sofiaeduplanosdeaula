@@ -175,13 +175,17 @@ hr.separador {
 </div>
 
 <!-- barra de logos-->
-<div id="barra-logos" style="background:#FFFFFF; margin-top: 1px; height: 100px; padding: 10px 0 100px 0">
+<div id="barra-logos" style="background:#FFFFFF; margin-top: 1px; height: 100px; padding: 10px 0 10px 0">
   <ul id="logos" style="list-style:none;">
-    <li style="margin-right:170px; margin-left:110px; border-right:1px">
-      <a href="{{ route('inicio') }}"><img src="{{asset('images/sofiaedu.png')}}"  height="90" width="250"></a>
-      <a href="{{ route('inicio') }}"><img src="{{asset('images/lmts2.png')}}" style = "margin-left: 15px" height="90" width="80"align = "right" ></a>
-      <a href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 15px" height="90" width="80" align = "right" ></a>
-      <a href="http://www.ufrpe.br/"><img src="{{asset('images/ufrpe.png')}}" style = "margin-left: 15px; margin-right: -15px " height="90" width="80" align = "right"></a>
+    <li style="margin-right:140px; margin-left:110px; border-right:1px">
+      <a href="{{ route('inicio') }}"><img src="{{asset('images/sofiaedu.png')}}"  height="80" width="240"></a>
+      <a href="{{ route('inicio') }}"><img src="{{asset('images/lmts2.png')}}" style = "margin-left: 15px; margin-top:10px " height="70" width="60"align = "right" ></a>
+
+      <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px" height="80" align = "right" >
+      <a href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 10px" height="80" width="70" align = "right" ></a>
+
+      <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px" height="80" align = "right" >
+      <a href="http://www.ufrpe.br/"><img src="{{asset('images/ufrpe.png')}}" style = "margin-left: 15px; margin-right: -10px " height="80" width="70" align = "right"></a>
     </li>
 
 
