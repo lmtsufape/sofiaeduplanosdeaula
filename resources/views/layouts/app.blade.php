@@ -56,6 +56,7 @@ div.panel {
 .navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
 	color: #fff;
 	background-color: transparent;
+  font-size: 13px;
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
@@ -179,7 +180,7 @@ hr.separador {
   <ul id="logos" style="list-style:none;">
     <li style="margin-right:140px; margin-left:110px; border-right:1px">
       <a href="{{ route('inicio') }}"><img src="{{asset('images/sofiaedu.png')}}"  height="80" width="240"></a>
-      <a href="{{ route('inicio') }}"><img src="{{asset('images/lmts2.png')}}" style = "margin-left: 15px; margin-top:10px " height="70" width="60"align = "right" ></a>
+      <a href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts2.png')}}" style = "margin-left: 15px; margin-top:10px " height="70" width="60"align = "right" ></a>
 
       <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px" height="80" align = "right" >
       <a href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 10px" height="80" width="70" align = "right" ></a>
@@ -229,7 +230,7 @@ hr.separador {
                                             {{ csrf_field() }}
                                         </form>
                            </li>
-                           <li><a href="{{ route('register') }}">Register</a></li>
+                           <li><a href="{{ route('register') }}">Cadastrar</a></li>
                         @endif
             </ul>
             <ul class="nav navbar-nav">
