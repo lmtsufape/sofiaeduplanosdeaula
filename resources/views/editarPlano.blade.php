@@ -7,40 +7,49 @@
 var componentes = {!! json_encode($componentes) !!};
 var unidades = {!! json_encode($unidades) !!};
 var nivelSelecionado = {!! $plano->nivel !!};
-var areaSelecionada = {!! $areaTematica->id !!};
-var componenteSelecionado = {!! $componenteCurricular->id !!};
-var unidadeSelecionada = {!! $areaConhecimento->id !!};
+
 
 function selecionar () {
 	var nivelObj = document.getElementById("nivel");
 	nivelObj.selectedIndex = nivelSelecionado;
 	nivelChange(nivelObj);
 
-	var areaObj = document.getElementById("areas");
-	for (var i=0; i<areaObj.length; i++) {
-			if(areaObj.options[i].value == areaSelecionada) {
-				areaObj.selectedIndex = i;
-				break;
-			}
-	}
-	areaChange(areaObj);
 
-	var compObj = document.getElementById("componente");
-	for (var i=0; i<compObj.length; i++) {
-			if(compObj.options[i].value == componenteSelecionado) {
-				compObj.selectedIndex = i;
-				break;
-			}
+	if(typeof $areaTematica != 'undefined'){
+		var areaSelecionada = {!! 10 !!};
+		var areaObj = document.getElementById("areas");
+		for (var i=0; i<areaObj.length; i++) {
+				if(areaObj.options[i].value == areaSelecionada) {
+					areaObj.selectedIndex = i;
+					break;
+				}
+		}
+		areaChange(areaObj);
 	}
-	componenteChange(compObj);
 
-	var unidadeObj = document.getElementById("unidade");
-	for (var i=0; i<unidadeObj.length; i++) {
-			if(unidadeObj.options[i].value == unidadeSelecionada) {
-				unidadeObj.selectedIndex = i;
-				break;
-			}
+	if(typeof $componenteCurricular != 'undefined'){
+		var componenteSelecionado = {!! 10 !!};
+		var compObj = document.getElementById("componente");
+		for (var i=0; i<compObj.length; i++) {
+				if(compObj.options[i].value == componenteSelecionado) {
+					compObj.selectedIndex = i;
+					break;
+				}
+		}
+		componenteChange(compObj);
 	}
+
+	if(typeof $areaConhecimento != 'undefined'){
+		var unidadeSelecionada = {!! 10 !!};
+		var unidadeObj = document.getElementById("unidade");
+		for (var i=0; i<unidadeObj.length; i++) {
+				if(unidadeObj.options[i].value == unidadeSelecionada) {
+					unidadeObj.selectedIndex = i;
+					break;
+				}
+		}
+	}
+
 }
 
 function nivelChange(selectObj) {
