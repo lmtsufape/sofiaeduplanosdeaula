@@ -16,7 +16,7 @@ function selecionar () {
 
 
 	if(typeof $areaTematica != 'undefined'){
-		var areaSelecionada = {!! 10 !!};
+		var areaSelecionada = {!! $areaTematica->id !!};
 		var areaObj = document.getElementById("areas");
 		for (var i=0; i<areaObj.length; i++) {
 				if(areaObj.options[i].value == areaSelecionada) {
@@ -28,7 +28,7 @@ function selecionar () {
 	}
 
 	if(typeof $componenteCurricular != 'undefined'){
-		var componenteSelecionado = {!! 10 !!};
+		var componenteSelecionado = {!! $componenteCurricular->id !!};
 		var compObj = document.getElementById("componente");
 		for (var i=0; i<compObj.length; i++) {
 				if(compObj.options[i].value == componenteSelecionado) {
@@ -40,7 +40,7 @@ function selecionar () {
 	}
 
 	if(typeof $areaConhecimento != 'undefined'){
-		var unidadeSelecionada = {!! 10 !!};
+		var unidadeSelecionada = {!! $areaConhecimento->id!!};
 		var unidadeObj = document.getElementById("unidade");
 		for (var i=0; i<unidadeObj.length; i++) {
 				if(unidadeObj.options[i].value == unidadeSelecionada) {

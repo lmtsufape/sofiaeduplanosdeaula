@@ -95,9 +95,11 @@ class PlanoController extends Controller
 			$plano->verificado = false;
  			$plano->save();
 
- 			return redirect()->route('/plano/new');
+			session()->flash('success', 'Plano cadastrado com sucesso.');
+ 			return redirect()->back();
     	} else {
-				return "arquivo invalido";
+				session()->flash('fail', 'Arquivo inválido');
+				return redirect()->back();
 		}
     }
 

@@ -3,19 +3,19 @@
 @section('content')
 
 <script type="text/javascript" >
-//<![CDATA[ 
+//<![CDATA[
 var componentes = {!! json_encode($componentes) !!};
 var unidades = {!! json_encode($unidades) !!};
 
-function nivelChange(selectObj) { 
-	// get the index of the selected option 
-	var idx = selectObj.selectedIndex; 
-	// get the value of the selected option 
-	var which = selectObj.options[idx].value; 
-  
+function nivelChange(selectObj) {
+	// get the index of the selected option
+	var idx = selectObj.selectedIndex;
+	// get the value of the selected option
+	var which = selectObj.options[idx].value;
+
   	var grupo_infantil = document.getElementById("grupo_infantil");
   	var grupo_fundamental = document.getElementById("grupo_fundamental");
-  	
+
   	switch (which) {
 		case "0":
 			grupo_infantil.style.display = "none";
@@ -33,71 +33,71 @@ function nivelChange(selectObj) {
 }
 
 
-function areaChange(selectObj) { 
-	var idx = selectObj.selectedIndex; 
-	var which = selectObj.options[idx].value; 
-	
+function areaChange(selectObj) {
+	var idx = selectObj.selectedIndex;
+	var which = selectObj.options[idx].value;
+
 	var cSelect = document.getElementById("componente");
-	
+
 	limparSelect(cSelect, "Selecione um Componente Curricular");
 	limparSelect(document.getElementById("unidade"), "Selecione uma Unidade Temática");
-	 
-	for (var i=0; i<componentes.length; i++) { 
-		if(componentes[i].areaconhecimento_id == which) { 
+
+	for (var i=0; i<componentes.length; i++) {
+		if(componentes[i].areaconhecimento_id == which) {
 			newOption = document.createElement("option");
-			newOption.value = componentes[i].id; 
-			newOption.text=componentes[i].descricao; 
-			
-			try { 
-				cSelect.add(newOption);  // this will fail in DOM browsers but is needed for IE 
-			} catch (e) { 
-				cSelect.appendChild(newOption); 
-			} 
+			newOption.value = componentes[i].id;
+			newOption.text=componentes[i].descricao;
+
+			try {
+				cSelect.add(newOption);  // this will fail in DOM browsers but is needed for IE
+			} catch (e) {
+				cSelect.appendChild(newOption);
+			}
 		}
 	}
 }
- 
- 
-function componenteChange(selectObj) { 
-	var idx = selectObj.selectedIndex; 
-	var which = selectObj.options[idx].value; 
 
- 	var cSelect = document.getElementById("unidade"); 
- 	
+
+function componenteChange(selectObj) {
+	var idx = selectObj.selectedIndex;
+	var which = selectObj.options[idx].value;
+
+ 	var cSelect = document.getElementById("unidade");
+
  	limparSelect(cSelect, "Selecione uma Unidade Temática");
 
-	var newOption; 
-	for (var i=0; i<unidades.length; i++) { 
+	var newOption;
+	for (var i=0; i<unidades.length; i++) {
 		if(unidades[i].componentecurricular_id == which) {
 			newOption = document.createElement("option");
-			newOption.value = unidades[i].id;  
-			newOption.text=unidades[i].descricao; 
-			
-			try { 
-				cSelect.add(newOption);  // this will fail in DOM browsers but is needed for IE 
-			} catch (e) { 
-				cSelect.appendChild(newOption); 
-			} 
+			newOption.value = unidades[i].id;
+			newOption.text=unidades[i].descricao;
+
+			try {
+				cSelect.add(newOption);  // this will fail in DOM browsers but is needed for IE
+			} catch (e) {
+				cSelect.appendChild(newOption);
+			}
 		}
 	}
 }
- 
- 
+
+
 function limparSelect(cSelect, defaultText) {
- 	var len=cSelect.options.length; 
- 	while (cSelect.options.length > 0) { 
- 		cSelect.remove(0); 
- 	} 
- 	
+ 	var len=cSelect.options.length;
+ 	while (cSelect.options.length > 0) {
+ 		cSelect.remove(0);
+ 	}
+
  	var newOption = document.createElement("option");
- 	newOption.value = "";  
- 	newOption.text= defaultText 
- 	
- 	try { 
- 		cSelect.add(newOption);  // this will fail in DOM browsers but is needed for IE 
- 	} catch (e) { 
- 		cSelect.appendChild(newOption); 
-	} 
+ 	newOption.value = "";
+ 	newOption.text= defaultText
+
+ 	try {
+ 		cSelect.add(newOption);  // this will fail in DOM browsers but is needed for IE
+ 	} catch (e) {
+ 		cSelect.appendChild(newOption);
+	}
 }
 
 
@@ -115,8 +115,8 @@ function limparSelect(cSelect, defaultText) {
   border-bottom: none;
   border-top: none;
   z-index: 99;
-  
-  
+
+
   top: 97%;
   left: 20px;
   right: 0;
@@ -147,7 +147,7 @@ function autocomplete(inp, arr) {
   var currentFocus;
   /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
-  
+
       var a, b, i, val = this.value;
       /*close any already open lists of autocompleted values*/
       closeAllLists();
@@ -237,9 +237,9 @@ function autocomplete(inp, arr) {
 document.addEventListener("click", function (e) {
     closeAllLists(e.target);
 });
-}  
- 
- 
+}
+
+
 </script>
 
 
@@ -248,17 +248,27 @@ document.addEventListener("click", function (e) {
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Adicionar Plano de Aula</strong></div>
-					
+
                 <div class="panel-body">
+									@if(session('success'))
+									<div class="alert alert-success">
+    								<p>{{session('success')}}</p>
+									</div>
+								@endif
+								@if(session('fail'))
+								<div class="alert alert-danger">
+									<p>{{session('fail')}}</p>
+								</div>
+							@endif
 						<form action="{{ route('/plano/new') }}" enctype="multipart/form-data" method="post" class="form-horizontal" >
-							<input type="hidden" name="_token" value="{{ csrf_token() }}"> 
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
     							<label class="control-label col-sm-2" for="software">Software:</label>
     							<div class="col-sm-10">
       							<input type="text" class="form-control"  id="software" name="software" placeholder="Nome do software utilizado">
       							 <script>
       							 		autocomplete(document.getElementById("software"), softwares);
-      							 </script> 
+      							 </script>
       						</div>
 							</div>
 							<div class="form-group">
@@ -272,7 +282,7 @@ document.addEventListener("click", function (e) {
     							<div class="col-sm-10">
       							<input type="text" class="form-control" id="contato" name="contato" placeholder="Contato do(s) autor(es)">
     							</div>
-							</div>							
+							</div>
 							<div class="form-group">
     							<label class="control-label col-sm-2" for="fonte">Fonte:</label>
     							<div class="col-sm-10">
@@ -286,7 +296,7 @@ document.addEventListener("click", function (e) {
 											<option value="0">Selecione um nível de Ensino</option>
 											<option value="1">Educação Infantil</option>
 											<option value="2">Ensino Fundamental</option>
-									</select>      							
+									</select>
     							</div>
 							</div>
 							<div id="grupo_infantil">
@@ -301,7 +311,7 @@ document.addEventListener("click", function (e) {
       							</select>
 
     							</div>
-							</div>	
+							</div>
 							</div>
 							<div id="grupo_fundamental">
 							<div class="form-group">
@@ -315,7 +325,7 @@ document.addEventListener("click", function (e) {
       							</select>
 
     							</div>
-							</div>						
+							</div>
 							<div class="form-group">
     							<label class="control-label col-sm-2" for="componente">Componente Curricular:</label>
     							<div class="col-sm-10">
@@ -339,14 +349,14 @@ document.addEventListener("click", function (e) {
       							<input type="file" class="form-control-file" id="arquivo" name="file" placeholder="Selecione um arquivo">
     							</div>
 							</div>
-								
+
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
 									<button type="submit" class="btn btn-default">Cadastrar</button>
 								</div>
-							</div>																																						
-						</form>                    
-                    
+							</div>
+						</form>
+
                 </div>
             </div>
         </div>
