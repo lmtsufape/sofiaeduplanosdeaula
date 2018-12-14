@@ -30,6 +30,7 @@ class PlanoController extends Controller
 			$plano = \App\Plano::find($request->id);
     	$campoExperiencia = \App\Campoexperiencia::where('id', '=', $plano->campoexperiencia_id)->first();
 			$areaTematica = \App\Areatematica::where('id', '=', $plano->areatematica_id)->first();
+			//return $areaTematica->id;
 			$componenteCurricular = \App\Componentecurricular::where('id', '=', $plano->componentecurricular_id)->first();
 			$areaConhecimento = \App\Areaconhecimento::where('id', '=', $plano->areaconhecimento_id)->first();
 			$arquivo = $plano->arquivo;
@@ -149,6 +150,10 @@ class PlanoController extends Controller
 
  				$plano->arquivo = $nameFile;
 			}
+			if($request->hasFile('file')  && !($request->file('file')->isValid())) {
+				session()->flash('fail', 'Arquivo inválido');
+				return redirect()->back();
+			}
 			$plano->software = $request->software;
 			$plano->autores = $request->autores;
 			$plano->contato = $request->contato;
@@ -174,6 +179,7 @@ class PlanoController extends Controller
 			$plano->verificado = false;
  			$plano->save();
 
+			session()->flash('success', 'Plano alterado com sucesso.');
  			return view("exibirPlano", ["plano" => $plano]);
 
 		}
@@ -181,6 +187,7 @@ class PlanoController extends Controller
 		public function removerPlano(Request $request){
 			$plano = \App\Plano::find($request->id);
 			$plano->delete();
+			session()->flash('success', 'Plano deletado com sucesso.');
 			return redirect()->route('/plano/new');
 		}
 
@@ -202,7 +209,8 @@ class PlanoController extends Controller
 				$plano->verificado = true;
 				$plano->save();
 
-				return redirect()->route('/plano/new');
+				session()->flash('success', 'Plano verificado com sucesso');
+				return redirect()->back();
 		}
 
 }

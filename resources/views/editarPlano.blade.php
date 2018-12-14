@@ -4,52 +4,65 @@
 
 <script type="text/javascript" >
 //<![CDATA[
+var campos = {!! json_encode($campos) !!};
 var componentes = {!! json_encode($componentes) !!};
 var unidades = {!! json_encode($unidades) !!};
 var nivelSelecionado = {!! $plano->nivel !!};
 
 
-function selecionar () {
-	var nivelObj = document.getElementById("nivel");
-	nivelObj.selectedIndex = nivelSelecionado;
-	nivelChange(nivelObj);
+function selecionarInfantil (){
 
+	<?php if($plano->nivel == 1){ ?>
 
-	if(typeof $areaTematica != 'undefined'){
-		var areaSelecionada = {!! $areaTematica->id !!};
-		var areaObj = document.getElementById("areas");
-		for (var i=0; i<areaObj.length; i++) {
-				if(areaObj.options[i].value == areaSelecionada) {
-					areaObj.selectedIndex = i;
+		var nivelObj = document.getElementById("nivel");
+		nivelObj.selectedIndex = nivelSelecionado;
+		nivelChange(nivelObj);
+
+		var campoSelecionado = {!! $campoExperiencia->id !!};
+		var campoObj = document.getElementById("campos");
+		for (var i=0; i<campoObj.length; i++) {
+				if(campoObj.options[i].value == campoSelecionado) {
+					campoObj.selectedIndex = i;
 					break;
 				}
 		}
-		areaChange(areaObj);
-	}
+	<?php } ?>
+}
 
-	if(typeof $componenteCurricular != 'undefined'){
+function selecionarFundamental () {
+	<?php if ($plano->nivel == 2){ ?>
+		var unidadeSelecionada = {!! $areaTematica->id !!};
 		var componenteSelecionado = {!! $componenteCurricular->id !!};
-		var compObj = document.getElementById("componente");
-		for (var i=0; i<compObj.length; i++) {
-				if(compObj.options[i].value == componenteSelecionado) {
-					compObj.selectedIndex = i;
-					break;
-				}
-		}
-		componenteChange(compObj);
-	}
+		var areaSelecionada = {!! $areaConhecimento->id !!};
 
-	if(typeof $areaConhecimento != 'undefined'){
-		var unidadeSelecionada = {!! $areaConhecimento->id!!};
-		var unidadeObj = document.getElementById("unidade");
-		for (var i=0; i<unidadeObj.length; i++) {
-				if(unidadeObj.options[i].value == unidadeSelecionada) {
-					unidadeObj.selectedIndex = i;
-					break;
-				}
-		}
-	}
+		var nivelObj = document.getElementById("nivel");
+		nivelObj.selectedIndex = nivelSelecionado;
+		nivelChange(nivelObj);
 
+			var areaObj = document.getElementById("areas");
+			for (var i=0; i<areaObj.length; i++) {
+					if(areaObj.options[i].value == areaSelecionada) {
+						areaObj.selectedIndex = i;
+						break;
+					}
+			}
+			areaChange(areaObj);
+			var compObj = document.getElementById("componente");
+			for (var i=0; i<compObj.length; i++) {
+					if(compObj.options[i].value == componenteSelecionado) {
+						compObj.selectedIndex = i;
+						break;
+					}
+			}
+			componenteChange(compObj);
+			var unidadeObj = document.getElementById("unidade");
+			for (var i=0; i<unidadeObj.length; i++) {
+					if(unidadeObj.options[i].value == unidadeSelecionada) {
+						unidadeObj.selectedIndex = i;
+						break;
+					}
+			}
+		<?php } ?>
 }
 
 function nivelChange(selectObj) {
@@ -409,6 +422,11 @@ document.addEventListener("click", function (e) {
 </div>
 
 <script>
-	selecionar();
+	<?php if ($plano->nivel == 2){ ?>
+		selecionarFundamental();
+	<?php } else {?>
+		selecionarInfantil();
+	<?php } ?>
+
 </script>
 @endsection

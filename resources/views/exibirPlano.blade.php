@@ -22,6 +22,7 @@ function avisoVerificar(){
   }
 }
 
+
 </script>
 
 <div id="container">
@@ -29,6 +30,16 @@ function avisoVerificar(){
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Plano de Aula: </div>
+                @if(session('success'))
+                <div class="alert alert-success">
+                  <p>{{session('success')}}</p>
+                </div>
+              @endif
+              @if(session('fail'))
+              <div class="alert alert-danger">
+                <p>{{session('fail')}}</p>
+              </div>
+            @endif
 
                 <div class="panel-body">
 <form class="form-horizontal">
