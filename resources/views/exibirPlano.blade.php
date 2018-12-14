@@ -2,11 +2,44 @@
 
 @section('content')
 
+<script language= 'javascript'>
+
+function avisoDeletar(){
+  if(confirm (' Deseja realmente excluir este plano? ')) {
+    location.href="/plano/remover/{{$plano->id}}";
+  }
+  else {
+    return false;
+  }
+}
+
+function avisoVerificar(){
+  if(confirm (' Deseja realmente verificar este plano? ')) {
+    location.href="/plano/verificar/{{$plano->id}}";
+  }
+  else {
+    return false;
+  }
+}
+
+
+</script>
+
 <div id="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Plano de Aula: </div>
+                @if(session('success'))
+                <div class="alert alert-success">
+                  <p>{{session('success')}}</p>
+                </div>
+              @endif
+              @if(session('fail'))
+              <div class="alert alert-danger">
+                <p>{{session('fail')}}</p>
+              </div>
+            @endif
 
                 <div class="panel-body">
 <form class="form-horizontal">
@@ -97,8 +130,8 @@
               <div class="form-group">
                 @if (Auth::guard()->check())<!-- deletar -->
                 <div class="control-label col-sm-3">
-                    <a class="right waves-effect waves-teal darken-4 btn-flat" href="/plano/remover/{{$plano->id}}">
-                        <b>Deletar</b> <i class="material-icons right">delete</i>
+                    <!--<a class="right waves-effect waves-teal darken-4 btn-flat" href="/plano/remover/{{$plano->id}}" > -->
+                        <a class="right waves-effect waves-teal darken-4 btn-flat" onClick="avisoDeletar();"><b>Deletar</b> <i class="material-icons right">delete</i></a>
                       </a>
                     </div>
                 @endif
@@ -107,8 +140,8 @@
               <div class="form-group">
                 @if (Auth::guard()->check() && $plano->verificado == false)<!-- verificar -->
                 <div class="control-label col-sm-3">
-                    <a class="right waves-effect waves-teal darken-4 btn-flat" href="/plano/verificar/{{$plano->id}}">
-                        <b>Verificar</b> <i class="material-icons right">check</i>
+                    <!-- <a class="right waves-effect waves-teal darken-4 btn-flat" href="/plano/verificar/{{$plano->id}}"> -->
+                        <a class="right waves-effect waves-teal darken-4 btn-flat" onClick="avisoVerificar();"><b>Verificar</b> <i class="material-icons right">check</i></a>
                       </a>
                     </div>
                 @endif
