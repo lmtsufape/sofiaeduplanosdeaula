@@ -76,7 +76,7 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
-
+    'locale' => 'pt-BR',
     'locale' => 'en',
 
     /*
@@ -89,7 +89,7 @@ return [
     | the language folders that are provided through your application.
     |
     */
-
+    'fallback_locale' => 'pt-BR',
     'fallback_locale' => 'en',
 
     /*
