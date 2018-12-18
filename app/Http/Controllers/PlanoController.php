@@ -97,7 +97,7 @@ class PlanoController extends Controller
 			$plano->verificado = false;
  			$plano->save();
 
-			session()->flash('success', 'Plano cadastrado com sucesso.');
+			session()->flash('success', 'Plano submetido para validação.');
  			return redirect()->back();
     	} else {
 				session()->flash('fail', 'Arquivo inválido');
@@ -236,7 +236,7 @@ class PlanoController extends Controller
 					return redirect()->back();
 				}
 
-				session()->flash('success', 'Plano avaliado com sucesso');
+				session()->flash('success', 'Sua avaliação foi submetida para aprovação.');
 				return redirect()->back();
 		}
 
@@ -246,6 +246,15 @@ class PlanoController extends Controller
 			$avaliacao->save();
 
 			session()->flash('success', 'Comentário aprovado com sucesso');
+			return redirect()->back();
+		}
+
+		public function deletarAvaliacao(Request $request){
+			$avaliacao = \App\Avaliacao::find($request->id);
+			$avaliacao->aprovado = false;
+			$avaliacao->delete();
+
+			session()->flash('success', 'Comentário deletado com sucesso.');
 			return redirect()->back();
 		}
 

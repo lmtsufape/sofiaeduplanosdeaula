@@ -22,9 +22,18 @@ function avisoVerificar(){
   }
 }
 
-function avisoAprovar(id){
+function avisoAprovarComentario(id){
   if(confirm (' Deseja realmente aprovar esta avaliação? ')) {
     location.href="/plano/comentario/aprovar/"+id;
+  }
+  else {
+    return false;
+  }
+}
+
+function avisoDeletarComentario(id){
+  if(confirm (' Deseja excluir esta avaliação? ')) {
+    location.href="/plano/comentario/excluir/"+id;
   }
   else {
     return false;
@@ -38,15 +47,14 @@ function avisoAprovar(id){
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Plano de Aula:
-                <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
                 <?php switch ($media) {
                   case 5:
                   ?>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star" for="star-5"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-4" for="star-4"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-3" for="star-3"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-2" for="star-2"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-1" for="star-1"></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star" ></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-4" ></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-3" ></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-2" ></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-1" ></label>
 
                   <?php
                     break;
@@ -54,9 +62,9 @@ function avisoAprovar(id){
                   case 4:
                   ?>
 
-                  <label style="font-size: 20px; padding: 0 10px 0 0;" class="star star" for="star-5"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-4" for="star-4"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-3" for="star-3"></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0;" class="star star" ></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-4" ></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-3" ></label>
                   <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-2" for="star-2"></label>
                   <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-1" for="star-1"></label>
 
@@ -66,11 +74,11 @@ function avisoAprovar(id){
                   case 3:
                   ?>
 
-                  <label style="font-size: 20px; padding: 0 10px 0 0;" class="star star" for="star-5"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0;" class="star star-4" for="star-4"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-3" for="star-3"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-2" for="star-2"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-1" for="star-1"></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0;" class="star star" ></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0;" class="star star-4" ></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-3" ></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-2"></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-1"></label>
 
                   <?php
                     break;
@@ -78,11 +86,11 @@ function avisoAprovar(id){
                   case 2:
                   ?>
 
-                  <label style="font-size: 20px; padding: 0 10px 0 0; " class="star star" for="star-5"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; " class="star star-4" for="star-4"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; " class="star star-3" for="star-3"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-2" for="star-2"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-1" for="star-1"></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; " class="star star" ></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; " class="star star-4" ></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; " class="star star-3" ></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-2"></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-1"></label>
 
                   <?php
                     break;
@@ -92,7 +100,7 @@ function avisoAprovar(id){
 
                   <label style="font-size: 20px; padding: 0 10px 0 0; " class="star star" for="star-5"></label>
                   <label style="font-size: 20px; padding: 0 10px 0 0; " class="star star-4" for="star-4"></label>
-                  <label style="font-size: 20px; padding: 0 10px 0 0; " class="star star-3" for="star-3"></label>
+                  <label style="font-size: 20px; padding: 0 10px 0 0; " class="star star-3" ></label>
                   <label style="font-size: 20px; padding: 0 10px 0 0; " class="star star-2" for="star-2"></label>
                   <label style="font-size: 20px; padding: 0 10px 0 0; color: #FD4;" class="star star-1" for="star-1"></label>
 
@@ -285,12 +293,17 @@ function avisoAprovar(id){
                   <div class="form-group">
         							<label class="control-label col-sm-6" for="comentario">{{ $avaliacao->comentario }}</label>
 
-                      <div class="col-sm-3">
+                      <div class="col-sm-1">
           							<p class="form-control-static">{{ $avaliacao->nota }}</p>
         							</div>
 
+                      <div class="col-sm-2">
+                        <a class="right waves-effect waves-teal darken-4 btn-flat" onClick="avisoAprovarComentario({{$avaliacao->id}});"><b>Aceitar</b> <i class="material-icons right">check</i></a>
+                      </a>
+        							</div>
+
                       <div class="col-sm-3">
-                        <a class="right waves-effect waves-teal darken-4 btn-flat" onClick="avisoAprovar({{$avaliacao->id}});"><b>Aceitar</b> <i class="material-icons right">check</i></a>
+                        <a class="right waves-effect waves-teal darken-4 btn-flat" onClick="avisoDeletarComentario({{$avaliacao->id}});"><b>Excluir</b> <i class="material-icons right">delete</i></a>
                       </a>
         							</div>
 

@@ -37,6 +37,8 @@ Route::get('/plano/verificar/{id}', 'PlanoController@verificarPlano')->name('/pl
 
 Route::get('/plano/comentario/aprovar/{id}', 'PlanoController@aceitarAvaliacao')->name('/plano/comentario/aprovar')->middleware('auth');
 
+Route::get('/plano/comentario/excluir/{id}', 'PlanoController@deletarAvaliacao')->name('/plano/comentario/excluir')->middleware('auth');
+
 Route::get('/plano/listaUser', 'PlanoController@listarUser')->name('/plano/listaUser')->middleware('auth');
 
 Route::get('/plano/listaNaoVerificados', 'PlanoController@listarNaoVerificados')->name('/plano/listaNaoVerificados')->middleware('auth');
@@ -52,8 +54,8 @@ $this->post('login', 'Auth\LoginController@login');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout')->middleware('auth');
 
 // Registration Routes...
-$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-$this->post('register', 'Auth\RegisterController@register');
+$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('auth');
+$this->post('register', 'Auth\RegisterController@register')->middleware('auth');
 
 // Password Reset Routes...
 $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
