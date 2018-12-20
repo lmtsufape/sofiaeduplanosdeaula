@@ -40,6 +40,7 @@ class PlanoController extends Controller
     	$componentes = \App\Componentecurricular::all();
     	$unidades = \App\Areatematica::all();
 
+
 		return view("editarPlano", [
 				"plano" => $plano,
 				"campoExperiencia" => $campoExperiencia,
@@ -96,7 +97,7 @@ class PlanoController extends Controller
 			$plano->verificado = false;
  			$plano->save();
 
-			session()->flash('success', 'Plano cadastrado com sucesso.');
+			session()->flash('success', 'Plano submetido para validação.');
  			return redirect()->back();
     	} else {
 				session()->flash('fail', 'Arquivo inválido');
@@ -132,11 +133,18 @@ class PlanoController extends Controller
 
 	 public function exibir(Request $request) {
 		$plano = \App\Plano::find($request->id);
+		$avaliacoes = \App\Avaliacao::where('plano_id', '=', $plano->id)->get();
+
 		if(isset($plano->fonte)) {
 			if(!substr( $plano->fonte , 0, 7 ) === "http://")
 				$plano->fonte = "http://" . $plano->fonte;
 		}
-		return view("exibirPlano", ["plano" => $plano]);
+		$media = $this->obterMedia($plano->id);
+		return view("exibirPlano", [
+				"plano" => $plano,
+				"avaliacoes" => $avaliacoes,
+				"media" => $media,
+			]);
     }
 
 		public function editarPlano(Request $request){
@@ -213,4 +221,55 @@ class PlanoController extends Controller
 				return redirect()->back();
 		}
 
+		public function avaliarPlano(Request $request){
+				$avaliacao = new \App\Avaliacao();
+
+				if(isset($_POST['star'])){
+					$selected_val = $_POST['star'];
+					$avaliacao->nota = $selected_val;
+					$avaliacao->comentario = $request->comentario;
+					$avaliacao->plano_id = $request->plano_id;
+
+					$avaliacao->save();
+				} else {
+					session()->flash('fail', 'É necessário dar uma nota.');
+					return redirect()->back();
+				}
+
+				session()->flash('success', 'Sua avaliação foi submetida para aprovação.');
+				return redirect()->back();
+		}
+
+		public function aceitarAvaliacao(Request $request){
+			$avaliacao = \App\Avaliacao::find($request->id);
+			$avaliacao->aprovado = true;
+			$avaliacao->save();
+
+			session()->flash('success', 'Comentário aprovado com sucesso');
+			return redirect()->back();
+		}
+
+		public function deletarAvaliacao(Request $request){
+			$avaliacao = \App\Avaliacao::find($request->id);
+			$avaliacao->aprovado = false;
+			$avaliacao->delete();
+
+			session()->flash('success', 'Comentário deletado com sucesso.');
+			return redirect()->back();
+		}
+
+		public function obterMedia($id){
+			$plano = \App\Plano::find($id);
+			$avaliacoes = \App\Avaliacao::where('plano_id', '=', $plano->id)
+																		->where('aprovado', '=', true)
+																		->get();
+			$media = 0;
+			$n = 0;
+			foreach ($avaliacoes as $avaliacao) {
+				$media = $avaliacao->nota + $media;
+				$n = $n + 1;
+			}
+			$media = $media/$n;
+			return $media;
+		}
 }

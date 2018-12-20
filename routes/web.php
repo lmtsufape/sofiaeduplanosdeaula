@@ -19,6 +19,8 @@ Route::get('/plano/new', 'PlanoController@create')->name('/plano/new');
 Route::get('/plano/all', 'PlanoController@listar')->name('/plano/all')->middleware('auth');
 Route::post('/plano/new', 'PlanoController@store');
 
+Route::post('/plano/avaliar', 'PlanoController@avaliarPlano')->name('/plano/avaliar');
+
 Route::get('/plano/campo/{id}', 'PlanoController@listarCampo')->name('/plano/campo');
 
 Route::get('/plano/unidade/{id}', 'PlanoController@listarUnidade')->name('/plano/unidade');
@@ -32,6 +34,10 @@ Route::post('/plano/salvarPlano', 'PlanoController@editarPlano')->name('/plano/s
 Route::get('/plano/remover/{id}', 'PlanoController@removerPlano')->name('/plano/remover')->middleware('auth');
 
 Route::get('/plano/verificar/{id}', 'PlanoController@verificarPlano')->name('/plano/verificar')->middleware('auth');
+
+Route::get('/plano/comentario/aprovar/{id}', 'PlanoController@aceitarAvaliacao')->name('/plano/comentario/aprovar')->middleware('auth');
+
+Route::get('/plano/comentario/excluir/{id}', 'PlanoController@deletarAvaliacao')->name('/plano/comentario/excluir')->middleware('auth');
 
 Route::get('/plano/listaUser', 'PlanoController@listarUser')->name('/plano/listaUser')->middleware('auth');
 
