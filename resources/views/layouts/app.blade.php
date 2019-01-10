@@ -286,6 +286,7 @@ div.stars {
                       <li><a href="{{ route('/plano/listaUser') }}">Meus Planos</a></li>
                       <li><a href="{{ route('/plano/listaNaoVerificados') }}">Não verificados</a></li>
                       <li><a href="{{ route('/plano/all') }}">Todos</a></li>
+                      <li><a href="{{ route('/comentarios') }}">Comentários não verificados</a></li>
                     </ul>
                 </li>
                 @endif
