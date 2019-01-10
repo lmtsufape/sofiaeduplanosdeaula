@@ -58,7 +58,7 @@ class PlanoController extends Controller
     }
 
     public function main() {
-	    return view('main');
+	    return view('inicio');
     }
 
     public function store(Request $request) {
@@ -269,7 +269,16 @@ class PlanoController extends Controller
 				$media = $avaliacao->nota + $media;
 				$n = $n + 1;
 			}
-			$media = $media/$n;
-			return $media;
+			if($n != 0){
+				$media = $media/$n;
+				return $media;
+			}
+			return 0;
+		}
+
+		public function listarComentarios(){
+			$avaliacoes = \App\Avaliacao::where('aprovado', '=', false)
+																		->get();
+			return view("comentarios", ["avaliacoes" => $avaliacoes]);
 		}
 }

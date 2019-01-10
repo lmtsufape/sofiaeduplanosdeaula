@@ -225,18 +225,26 @@ function avisoDeletarComentario(id){
                     </div>
                 @endif
               </div>
-</form>
 
-              <div class = "boxfloat">
+
+              <div class="form-group">
+                  <label class="control-label col-sm-3" for="nivel">Avalie este plano:</label>
+                  <div class="col-sm-9">
+
+                  </div>
+              </div>
+</form>
+              <div class = "form-group">
               <div class="stars">
-              <div class="form-group" style = "padding:15px 0 0 0;">
+                <div class="col-sm-9">
+
+                </div>
                 <form action="{{ route('/plano/avaliar') }}"  method="post"  enctype="multipart/form-data">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <label class="control-label col-sm-10" for="avaliacao">Avalie este plano: </label>
+                  <!-- <label class="control-label col-sm-10" for="avaliacao">Avalie este plano: </label> -->
                   <div class="col-sm-12">
                     <textarea class="form-control" id="comentario" name="comentario" placeholder="Digite seu comentário" > </textarea>
                   </div>
-              </div>
 
                 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 

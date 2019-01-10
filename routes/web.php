@@ -43,6 +43,8 @@ Route::get('/plano/listaUser', 'PlanoController@listarUser')->name('/plano/lista
 
 Route::get('/plano/listaNaoVerificados', 'PlanoController@listarNaoVerificados')->name('/plano/listaNaoVerificados')->middleware('auth');
 
+Route::get('/comentarios', 'PlanoController@listarComentarios')->name('/comentarios')->middleware('auth');
+
 
 Route::get('/download/planos/{file}', function ($file='') {
     return response()->download(storage_path('app/public/planos/'.$file));
