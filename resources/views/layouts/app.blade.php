@@ -277,7 +277,7 @@ div.stars {
                         @endif
             </ul>
             <ul class="nav navbar-nav">
-                <li> <a href="{{ route('inicio') }}">Download</a></li>
+                <li> <a href="https://mega.nz/#F!nvIDkYpa!t81vSMW9Q7FD9Y0MoY9ukw">Download</a></li>
                 <li ><a href="{{ route('/plano/new') }}">Enviar plano</a></li>
                 @if (Auth::guard()->check())
                 <li>
