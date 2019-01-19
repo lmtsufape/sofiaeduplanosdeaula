@@ -31,7 +31,6 @@ body{
    background-repeat:no-repeat;
    color: #0b3c54;
    background-image:url("{{asset('images/background3.png')}}");
-
 }
 
 .panel-body {
@@ -40,6 +39,10 @@ body{
 
 div.panel {
 	background: none;
+}
+
+div.body-content{
+  min-height: 500px;
 }
 
 .panel-default > .panel-heading {
@@ -126,6 +129,14 @@ div.stars {
 
   .pull-right{
   float:right;
+}
+
+footer {
+  background-color: gainsboro;
+  height: 60px;
+  width: 100%;
+  z-index: 1;
+  bottom: 0px;
 }
 
 </style>
@@ -223,7 +234,7 @@ div.stars {
   <ul id="logos" style="list-style:none;">
     <li style="margin-right:140px; margin-left:110px; border-right:1px">
       <a href="{{ route('inicio') }}"><img src="{{asset('images/sofiaedu.png')}}"  height="80" width="240"></a>
-      <a href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts2.png')}}" style = "margin-left: 15px; margin-top:10px " height="70" width="60"align = "right" ></a>
+      <a href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts3.png')}}" style = "margin-left: 10px; margin-top:10px " height="70" align = "right" ></a>
 
       <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px" height="80" align = "right" >
       <a href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 10px" height="80" width="70" align = "right" ></a>
@@ -408,11 +419,14 @@ div.stars {
             </ul>
         </div>
 
-      @yield('content')
+        <div class="body-content">
 
-<!--<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>-->
+      @yield('content')
+    </div>
+
+<footer class="container-fluid text-center">
+  <center>Em parceria com: <a href="http://garanhuns.pe.gov.br/secretarias-e-orgaos/secretaria-de-educacao/"><img src="{{asset('images/seduc.png')}}" style = "margin-left: 10px" height="60" width="150" ></a></center>
+</footer>
 </div>
 <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
 </body>
