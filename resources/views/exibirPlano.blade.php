@@ -6,7 +6,7 @@
 
 function avisoDeletar(){
   if(confirm (' Deseja realmente excluir este plano? ')) {
-    location.href="/plano/remover/{{$plano->id}}";
+    location.href="{{ route('/plano/remover', ['id' => $plano->id])}}";
   }
   else {
     return false;
@@ -15,7 +15,7 @@ function avisoDeletar(){
 
 function avisoVerificar(){
   if(confirm (' Deseja realmente verificar este plano? ')) {
-    location.href="/plano/verificar/{{$plano->id}}";
+    location.href="{{ route('/plano/verificar', ['id' => $plano->id])}}";
   }
   else {
     return false;
@@ -199,7 +199,7 @@ function avisoDeletarComentario(id){
               <div class="form-group">
                 @if (Auth::guard()->check())<!-- editar -->
                 <div class="control-label col-sm-3">
-                    <a class="right waves-effect waves-teal darken-4 btn-flat" href="/plano/editarPlano/{{$plano->id}}">
+                    <a class="right waves-effect waves-teal darken-4 btn-flat" href="{{ route('/plano/editarPlano', ['id' => $plano->id])}}">
                         <b>Editar</b> <i class="material-icons right">edit</i>
                       </a>
                     </div>
