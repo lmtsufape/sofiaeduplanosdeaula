@@ -234,7 +234,7 @@ footer {
   <ul id="logos" style="list-style:none;">
     <li style="margin-right:140px; margin-left:110px; border-right:1px">
       <a href="{{ route('inicio') }}"><img src="{{asset('images/sofiaedu.png')}}"  height="80" width="240"></a>
-      <a href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts3.png')}}" style = "margin-left: 10px; margin-top:10px " height="70" align = "right" ></a>
+      <a href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts4.png')}}" style = "margin-left: 10px; margin-top:10px " height="70" align = "right" ></a>
 
       <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px" height="80" align = "right" >
       <a href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 10px" height="80" width="70" align = "right" ></a>
