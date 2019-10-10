@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PlanoController extends Controller
 {
@@ -62,6 +63,15 @@ class PlanoController extends Controller
     }
 
     public function store(Request $request) {
+
+			$validator = Validator::make($request->all(), [
+					'software' => 'required',
+					'nivel' => 'required',
+			]);
+
+			if($validator->fails()){
+					return redirect()->back()->withErrors($validator->errors())->withInput();
+			}
 
      	if($request->hasFile('file') && $request->file('file')->isValid()) {
     		//$upload = $request->file('file')->store('planos');
