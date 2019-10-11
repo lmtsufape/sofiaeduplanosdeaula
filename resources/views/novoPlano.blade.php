@@ -262,25 +262,41 @@ document.addEventListener("click", function (e) {
 							@endif
 						<form action="{{ route('/plano/new') }}" enctype="multipart/form-data" method="post" class="form-horizontal" >
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
-							<div class="form-group">
+							<div class="form-group{{ $errors->has('software') ? ' has-error' : '' }}">
     							<label class="control-label col-sm-2" for="software">Software:</label>
     							<div class="col-sm-10">
       							<input type="text" class="form-control"  id="software" name="software" placeholder="Nome do software utilizado">
       							 <script>
       							 		autocomplete(document.getElementById("software"), softwares);
       							 </script>
+										 @if ($errors->has('software'))
+											 <span class="help-block">
+												 <strong>{{ $errors->first('software') }}</strong>
+											 </span>
+										 @endif
       						</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group{{ $errors->has('autores') ? ' has-error' : '' }}">
     							<label class="control-label col-sm-2" for="autores">Autores:</label>
     							<div class="col-sm-10">
       							<input type="text" class="form-control" id="autores" name="autores" placeholder="Nome do(s) autor(es)">
+
+										@if ($errors->has('autores'))
+											<span class="help-block">
+												<strong>{{ $errors->first('autores') }}</strong>
+											</span>
+										@endif
     							</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group{{ $errors->has('autores') ? ' has-error' : '' }}">
     							<label class="control-label col-sm-2" for="contato">Contato:</label>
     							<div class="col-sm-10">
       							<input type="text" class="form-control" id="contato" name="contato" placeholder="Contato do(s) autor(es)">
+										@if ($errors->has('contato'))
+											<span class="help-block">
+												<strong>{{ $errors->first('contato') }}</strong>
+											</span>
+										@endif
     							</div>
 							</div>
 							<div class="form-group">
@@ -289,14 +305,19 @@ document.addEventListener("click", function (e) {
       							<input type="text" class="form-control" id="fonte" name="fonte" placeholder="URL do plano de aula no site do autor (se houver)">
     							</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group{{ $errors->has('nivel') ? ' has-error' : '' }}">
     							<label class="control-label col-sm-2" for="nivel">Nível:</label>
     							<div class="col-sm-10">
 									<select class="form-control" id="nivel" name="nivel" onchange="nivelChange(this);">
-											<option value="0">Selecione um nível de Ensino</option>
+											<option value="0" selected disabled hidden>Selecione um nível de Ensino</option>
 											<option value="1">Educação Infantil</option>
 											<option value="2">Ensino Fundamental</option>
 									</select>
+									@if ($errors->has('nivel'))
+										<span class="help-block">
+											<strong>{{ $errors->first('nivel') }}</strong>
+										</span>
+									@endif
     							</div>
 							</div>
 							<div id="grupo_infantil">
@@ -304,7 +325,7 @@ document.addEventListener("click", function (e) {
     							<label class="control-label col-sm-2" for="campos">Campo de Experiência:</label>
     							<div class="col-sm-10">
       							<select class="form-control" id="campos" name="campoexperiencia_id" >
-      								<option value="0">Selecione um Campo de Experiência</option>
+      								<option value="0" selected disabled hidden>Selecione um Campo de Experiência</option>
       								@foreach($campos as $campo)
       									<option value="{{$campo->id}}">{{$campo->descricao}}</option>
       								@endforeach

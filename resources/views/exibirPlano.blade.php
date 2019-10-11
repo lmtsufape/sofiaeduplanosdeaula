@@ -129,12 +129,14 @@ function avisoDeletarComentario(id){
       							<p class="form-control-static">{{ $plano->software }}</p>
     							</div>
 							</div>
-							<div class="form-group">
-    							<label class="control-label col-sm-3" for="autores">Autores:</label>
-    							<div class="col-sm-9">
-      							<p class="form-control-static">{{ $plano->autores }}</p>
-    							</div>
-							</div>
+              @if($plano->autores != null)
+  							<div class="form-group">
+      							<label class="control-label col-sm-3" for="autores">Autores:</label>
+      							<div class="col-sm-9">
+        							<p class="form-control-static">{{ $plano->autores }}</p>
+      							</div>
+  							</div>
+              @endif
 
 							<div class="form-group">
     							<label class="control-label col-sm-3" for="contato">Contato:</label>
@@ -157,37 +159,46 @@ function avisoDeletarComentario(id){
 									<p class="form-control-static">Educação Infantil</p>
     							</div>
 							</div>
-							<div class="form-group">
-    							<label class="control-label col-sm-3" for="serie">Campo de Experiência:</label>
-    							<div class="col-sm-9">
-   								<p class="form-control-static">{{ $plano->campoexperiencia->descricao }}</p>
+                @if($plano->campoexperiencia != null)
+    							<div class="form-group">
+        							<label class="control-label col-sm-3" for="serie">Campo de Experiência:</label>
+        							<div class="col-sm-9">
+       								<p class="form-control-static">{{ $plano->campoexperiencia->descricao }}</p>
+        							</div>
     							</div>
-							</div>
+                @endif
 							@else
-							<div class="form-group">
-    							<label class="control-label col-sm-3" for="nivel">Nível:</label>
-    							<div class="col-sm-9">
-									<p class="form-control-static">Ensino Fundamental</p>
+  							<div class="form-group">
+      							<label class="control-label col-sm-3" for="nivel">Nível:</label>
+      							<div class="col-sm-9">
+  									<p class="form-control-static">Ensino Fundamental</p>
+      							</div>
+  							</div>
+                @if($plano->areaconhecimento != null)
+    							<div class="form-group">
+        							<label class="control-label col-sm-3" for="conteudos">Área do Conhecimento:</label>
+        							<div class="col-sm-9">
+        								<p class="form-control-static">{{ $plano->areaconhecimento->descricao }}</p>
+        							</div>
     							</div>
-							</div>
-							<div class="form-group">
-    							<label class="control-label col-sm-3" for="conteudos">Área do Conhecimento:</label>
-    							<div class="col-sm-9">
-    								<p class="form-control-static">{{ $plano->areaconhecimento->descricao }}</p>
+                @endif
+                @if($plano->componentecurricular != null)
+    							<div class="form-group">
+        							<label class="control-label col-sm-3" for="tema">Componente Curricular:</label>
+        							<div class="col-sm-9">
+        								<p class="form-control-static">{{ $plano->componentecurricular->descricao }}</p>
+        							</div>
     							</div>
-							</div>
-							<div class="form-group">
-    							<label class="control-label col-sm-3" for="tema">Componente Curricular:</label>
-    							<div class="col-sm-9">
-    								<p class="form-control-static">{{ $plano->componentecurricular->descricao }}</p>
+                @endif
+                @if($plano->areatematica != null)
+    							<div class="form-group">
+        							<label class="control-label col-sm-3" for="objetivos">Unidade Temática:</label>
+        							<div class="col-sm-9">
+    									<p class="form-control-static">{{ $plano->areatematica->descricao }}</p>
+        							</div>
     							</div>
-							</div>
-							<div class="form-group">
-    							<label class="control-label col-sm-3" for="objetivos">Unidade Temática:</label>
-    							<div class="col-sm-9">
-									<p class="form-control-static">{{ $plano->areatematica->descricao }}</p>
-    							</div>
-							</div>
+                @endif
+
 							@endif
 							<div class="form-group">
     							<label class="control-label col-sm-3" for="objetivos">Arquivo:</label>

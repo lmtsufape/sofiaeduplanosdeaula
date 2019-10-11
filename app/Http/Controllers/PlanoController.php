@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class PlanoController extends Controller
 {
@@ -66,7 +67,13 @@ class PlanoController extends Controller
 
 			$validator = Validator::make($request->all(), [
 					'software' => 'required',
+					'autores' => 'required',
+					'contato' => 'required',
 					'nivel' => 'required',
+					'campoexperiencia_id' => 'required_if:nivel,1',
+					'areas' => 'required_if:nivel,2',
+					'componente' => 'required_if:nivel,2',
+					'unidade' => 'required_if:nivel,2',
 			]);
 
 			if($validator->fails()){
